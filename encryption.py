@@ -18,26 +18,21 @@ class Encryption:
             else:
                 print("Input contains numbers or symbols. Please enter letters only.")
 
-        print("You entered:", self.input_text)
         return self.plain_text
     
         
-    def initial_total(self, random_key,number_list):
-        print(random_key)
-        print(number_list)
+    def initial_total(self, otp_num, plainText_numbers):
 
-        for i in range(len(random_key)) :
-            self.total=random_key[i]+ number_list[i]
+        for i in range(len(otp_num)) :
+            self.total=otp_num[i]+ plainText_numbers[i]
             self.init_total.append(self.total)
-        return self.init_total
     
-    def mod26_check(self,initial_total):
-        for i in initial_total:
+    def mod26_check(self):
+        for i in self.init_total:
             if i>25:
                 i %= 26
                 self.mod26.append(i)
             else:
                 self.mod26.append(i)
-        print(f'x.mod26={self.mod26}')
         return self.mod26
 

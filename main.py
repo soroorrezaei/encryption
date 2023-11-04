@@ -18,24 +18,21 @@ class Main:
             self.random_num=random.randrange(26)
             self.random_key.append(self.random_num)
         # self.random_key = ''.join(random.randrange(26) for _ in range(length))
-        print(self.random_key)
         return self.random_key
     
-    def convert_number_letter(self,numbers):
+    def convert_number_letter(self,numbers_list):
         self.letter_list=[]
-        for i in numbers:
+        for i in numbers_list:
             self.letter=self.letter_dict[i]
-            print(self.letter)
             self.letter_list.append(self.letter)
         return self.letter_list
     
-    def convert_letter_number(self, letters):
+    def convert_letter_number(self, letters_list):
         self.number_list=[]
-        for letter in letters:
+        for letter in letters_list:
             for key, value in self.letter_dict.items():
                 if value == letter:
                     self.number_list.append(key)
-        print(f'self.number_list = {self.number_list}')
         return self.number_list
 
 
@@ -43,32 +40,50 @@ class Main:
     
 
 
+main=Main()
+encrypt=en.Encryption()
 
-x=en.Encryption()
-y=Main()
-plain_text=x.enter_text()
-print(f'pl={plain_text}')
+plain_text=encrypt.enter_text()
 
-random_key=y.generate_random_key(len(plain_text))
+otp_num=main.generate_random_key(len(plain_text))
 
-otp=' '.join(y.convert_number_letter(random_key))
-print(otp)
+otp=' '.join(main.convert_number_letter(otp_num))
+print(f'Your decryption Key is: {otp}')
 
-number_list=y.convert_letter_number(plain_text)
+plainText_numbers=main.convert_letter_number(plain_text)
 
-initial_total=x.initial_total(random_key,number_list)
-print(initial_total)
+initial_total=encrypt.initial_total(otp_num,plainText_numbers)
 
-mod26=x.mod26_check(initial_total)
-print(f'x.mod26222={mod26}')
+mod26=encrypt.mod26_check()
 
-ciphertext=y.convert_number_letter(mod26)
+ciphertext=main.convert_number_letter(mod26)
 print(f'Encrypted text is:{ciphertext}')
 
 ###############
 # Decryption
 ###############
-z=de.Decryption()
+
+
+decrypt=de.Decryption()
+
+input_cipherText=decrypt.enter_cipherText()
+
+input_otp=decrypt.otp()
+
+cipherTextNum=main.convert_letter_number(input_cipherText)
+
+otpNum=main.convert_letter_number(input_otp)
+
+initial_total=decrypt.initial_total(cipherTextNum, otpNum)
+
+mod26_dec=decrypt.mod26_check()
+
+plainText=main.convert_number_letter(mod26_dec)
+print(f'your Plain Text is:{plainText}')
+
+
+
+
 
 
 
