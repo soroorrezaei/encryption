@@ -34,14 +34,14 @@ class Encryption:
         """
 
         while True:
-            self.input_text = input("Enter some text (letters only):\n ").upper()
-            self.plain_text=self.input_text.replace(" ", "")
-            if self.plain_text.isalpha() :
+            input_text = input("Enter some text (letters only):\n ").upper()
+            plain_text=input_text.replace(" ", "")
+            if plain_text.isalpha() :
                 break
             else:
                 print("Input contains numbers or symbols. Please enter letters only.")
 
-        return self.plain_text
+        return plain_text
     
  # Calculate the initial total by adding OTP numbers and plain text numbers.
     def initial_total(self, otp_num, plainText_numbers):
@@ -61,8 +61,8 @@ class Encryption:
         self.init_total=[]
 
         for i in range(len(otp_num)) :
-            self.total=otp_num[i]+ plainText_numbers[i]
-            self.init_total.append(self.total)
+            total=otp_num[i]+ plainText_numbers[i]
+            self.init_total.append(total)
         print(f'initial_total={self.init_total}')
     
 # Apply modulo 26 for numbers greater than 25.

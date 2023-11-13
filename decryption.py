@@ -36,13 +36,13 @@ class Decryption:
         - The ciphertext (letters only) entered by the user.
         """
         while True:
-            self.input_cipherText = input("Enter your chipherText:\n ").upper()
-            if self.input_cipherText.isalpha() :
+            input_cipherText = input("Enter your chipherText:\n ").upper()
+            if input_cipherText.isalpha() :
                 break
             else:
                 print("Input contains space, numbers or symbols. Please enter letters only.")
 
-        return self.input_cipherText
+        return input_cipherText
     
 # Get user input for the decryption key (OTP).
     def otp(self):
@@ -55,13 +55,13 @@ class Decryption:
         - The decryption key (OTP) entered by the user.
         """
         while True:
-            self.input_otp = input("Enter your decryption key (OTP):\n ").upper()
-            if self.input_otp.isalpha() :
+            input_otp = input("Enter your decryption key (OTP):\n ").upper()
+            if input_otp.isalpha() :
                 break
             else:
                 print("Input contains space, numbers or symbols. Please enter letters only.")
 
-        return self.input_otp 
+        return input_otp 
 
 # Calculate the total by subtracting OTP numbers from cipher text numbers in mod26.
     def total_calc(self,cipherText_num,otp_num ):
@@ -78,11 +78,11 @@ class Decryption:
         Returns:
         - A list containing the total calculated by subtracting OTP numbers from ciphertext numbers.
         """
-        self.total=[]
+        total=[]
 
         for i in range(len(otp_num)) :
             calc= cipherText_num[i]-otp_num[i]
             if calc<0:
                 calc+=26
-            self.total.append(calc)
-        return self.total
+            total.append(calc)
+        return total

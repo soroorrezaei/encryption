@@ -48,7 +48,6 @@ class Main:
         for i in range (length):
             self.random_num=random.randrange(26)
             self.random_key.append(self.random_num)
-        # self.random_key = ''.join(random.randrange(26) for _ in range(length))
         return self.random_key
     
 # Convert a list of numbers to letters using the letter dictionary.
@@ -71,73 +70,73 @@ class Main:
         return self.number_list
 
 
-  
-    
 
-while True:
-# Create an instance of the Main class for encryption and  decryption process.
-    main=Main()
+if __name__== '__main__':
 
-# Create an instance of the Encryption class for the encryption process.
-    encrypt=en.Encryption()
+    while True:
+    # Create an instance of the Main class for encryption and  decryption process.
+        main=Main()
 
-# Get user input for plain text and generate a random key.
-    plain_text=encrypt.enter_text()
-    print(f'plainntext={plain_text}')
+    # Create an instance of the Encryption class for the encryption process.
+        encrypt=en.Encryption()
 
-    otp_num=main.generate_random_key(len(plain_text))
-    print(f'otp_num={otp_num}')
+    # Get user input for plain text and generate a random key.
+        plain_text=encrypt.enter_text()
+        print(f'plainntext={plain_text}')
 
-# Convert the OTP numbers to letters for display.
-    otp=' '.join(main.convert_number_letter(otp_num))
-    print(f'Your decryption Key is: {otp}')
+        otp_num=main.generate_random_key(len(plain_text))
+        print(f'otp_num={otp_num}')
 
-# Convert plain text to numbers and calculate the initial total.
-    plainText_numbers=main.convert_letter_number(plain_text)
-    print(f'plainText_numbers={plainText_numbers}')
+    # Convert the OTP numbers to letters for display.
+        otp=''.join(main.convert_number_letter(otp_num))
+        print(f'Your decryption Key is: {otp}')
 
-    initial_total=encrypt.initial_total(otp_num,plainText_numbers)
+    # Convert plain text to numbers and calculate the initial total.
+        plainText_numbers=main.convert_letter_number(plain_text)
+        print(f'plainText_numbers={plainText_numbers}')
 
-# Apply modulo 26 for the initial total.
-    mod26=encrypt.mod26_check()
-    print(f'mod26={mod26}')
+        encrypt.initial_total(otp_num,plainText_numbers)
 
-# Convert the encrypted text to letters for display.
-    ciphertext=main.convert_number_letter(mod26)
-    print(f'Encrypted text is:{ciphertext}')
+    # Apply modulo 26 for the initial total.
+        mod26=encrypt.mod26_check()
+        print(f'mod26={mod26}')
 
-###############
-# Decryption
-###############
+    # Convert the encrypted text to letters for display.
+        ciphertext=main.convert_number_letter(mod26)
+        print(f'Encrypted text is:{"".join(ciphertext)}')
 
-# Create an instance of the Decryption class for the decryption process.
-    decrypt=de.Decryption()
+    ###############
+    # Decryption
+    ###############
 
-# Prompt the user to input the ciphertext for decryption.
-    input_cipherText=decrypt.enter_cipherText()
-    print(f'you have entered {input_cipherText}')
+    # Create an instance of the Decryption class for the decryption process.
+        decrypt=de.Decryption()
 
-# Prompt the user to input the decryption key (OTP).
-    input_otp=decrypt.otp()
-    print(f'your decription key is:{input_otp}')
+    # Prompt the user to input the ciphertext for decryption.
+        input_cipherText=decrypt.enter_cipherText()
+        print(f'you have entered {input_cipherText}')
 
-# Convert the ciphertext letters to numbers using the letter-to-number mapping.
-    cipherTextNum=main.convert_letter_number(input_cipherText)
-    print(f'ciphernumbers:{cipherTextNum}')
+    # Prompt the user to input the decryption key (OTP).
+        input_otp=decrypt.otp()
+        print(f'your decription key is:{input_otp}')
 
-# Convert the decryption key (OTP) letters to numbers using the letter-to-number mapping.
-    otpNum=main.convert_letter_number(input_otp)
-    print(f'otpNum={otpNum}')
+    # Convert the ciphertext letters to numbers using the letter-to-number mapping.
+        cipherTextNum=main.convert_letter_number(input_cipherText)
+        print(f'ciphernumbers:{cipherTextNum}')
 
-# Calculate the total in mod26 for decryption by subtracting OTP numbers from ciphertext numbers.
-    Total=decrypt.total_calc(cipherTextNum, otpNum)
-    print(f'Total={Total}')
+    # Convert the decryption key (OTP) letters to numbers using the letter-to-number mapping.
+        otpNum=main.convert_letter_number(input_otp)
+        print(f'otpNum={otpNum}')
 
-# Convert the decrypted numbers back to letters and display the plaintext.
-    plainText=main.convert_number_letter(Total)
-    print(f'your Plain Text is:{plainText}')
+    # Calculate the total in mod26 for decryption by subtracting OTP numbers from ciphertext numbers.
+        Total=decrypt.total_calc(cipherTextNum, otpNum)
+        print(f'Total={Total}')
 
-    print('***************************************************')
+    # Convert the decrypted numbers back to letters and display the plaintext.
+        plainText=main.convert_number_letter(Total)
+        print(f'your Plain Text is:{"".join(plainText)}')
+
+        print('***************************************************')
 
 
 
